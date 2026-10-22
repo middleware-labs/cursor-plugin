@@ -1,0 +1,14 @@
+# Local secrets and credentials (this repository is public)
+.env
+.env.*
+*.pem
+*.key
+*.p12
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+node_modules/

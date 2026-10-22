@@ -1,0 +1,16 @@
+{
+  "name": "middleware-plugins",
+  "owner": {
+    "name": "Middleware"
+  },
+  "metadata": {
+    "description": "Official Middleware plugin for Cursor"
+  },
+  "plugins": [
+    {
+      "name": "middleware",
+      "source": ".",
+      "description": "Query Middleware metrics, logs, traces, errors, RUM sessions, synthetic checks, and dashboards from Cursor through the hosted Middleware MCP server."
+    }
+  ]
+}

@@ -98,6 +98,28 @@ async function validateManifest() {
   return manifest;
 }
 
+// Cursor's "add plugins from folder" and team-marketplace imports require a
+// marketplace manifest; it lists this repository root as the only plugin.
+async function validateMarketplace(manifest) {
+  const marketplace = await readJson(".cursor-plugin/marketplace.json");
+  if (!marketplace) {
+    return;
+  }
+  if (typeof marketplace.name !== "string" || !kebabPattern.test(marketplace.name)) {
+    errors.push('marketplace.json "name" must be lowercase kebab-case');
+  }
+  if (typeof marketplace.owner?.name !== "string" || marketplace.owner.name.length === 0) {
+    errors.push('marketplace.json "owner.name" is required');
+  }
+  const entries = Array.isArray(marketplace.plugins) ? marketplace.plugins : [];
+  const entry = entries.find((plugin) => plugin?.name === manifest?.name);
+  if (!entry) {
+    errors.push(`marketplace.json "plugins" must list "${manifest?.name}" (the name in plugin.json)`);
+  } else if (typeof entry.source !== "string" || path.posix.normalize(entry.source) !== ".") {
+    errors.push('marketplace.json plugin "source" must be "." (this repository root)');
+  }
+}
+
 async function validateMcp(manifest) {
   const mcpPath = typeof manifest?.mcpServers === "string" ? manifest.mcpServers : "mcp.json";
   const mcp = await readJson(mcpPath);
@@ -167,6 +189,7 @@ async function validateSkills() {
 
 async function main() {
   const manifest = await validateManifest();
+  await validateMarketplace(manifest);
   await validateMcp(manifest);
   await validateSkills();
   if (!(await exists(path.join(root, "README.md")))) {

@@ -12,6 +12,7 @@ Thanks for taking the time to contribute. This document covers basic guidelines 
 | Path | Purpose |
 | --- | --- |
 | `.cursor-plugin/plugin.json` | Plugin manifest (name, version, description, logo) |
+| `.cursor-plugin/marketplace.json` | Lists this repository root as a plugin; required for "add from folder" and team marketplace imports |
 | `mcp.json` | Registers the hosted Middleware MCP server |
 | `skills/mwsetup/` | `/mwsetup`: first-time connection and routing of Middleware questions to the MCP server |
 | `skills/mwconfig/` | `/mwconfig`: troubleshooting and switching project or account |
@@ -23,13 +24,15 @@ Skills can only read files inside their own directory, which is why the shared r
 
 ## Testing locally
 
-1. Copy the repository into Cursor's local plugin folder (symlinks only load when they resolve inside that folder):
+1. Load the plugin in one of two ways:
+   - Add plugins from a folder in Cursor's plugin settings and select the **repository root** (the folder containing `.cursor-plugin/`, not `.cursor-plugin/` itself).
+   - Or copy the repository into Cursor's local plugin folder (symlinks only load when they resolve inside that folder):
 
-   ```bash
-   mkdir -p ~/.cursor/plugins/local
-   rm -rf ~/.cursor/plugins/local/middleware
-   cp -R . ~/.cursor/plugins/local/middleware
-   ```
+     ```bash
+     mkdir -p ~/.cursor/plugins/local
+     rm -rf ~/.cursor/plugins/local/middleware
+     cp -R . ~/.cursor/plugins/local/middleware
+     ```
 
 2. Disable the marketplace version of the plugin, if installed, then run the "Reload Window" action.
 3. Run `/mwsetup`, `/mwconfig`, and `/mwtools` in an agent chat, and ask a few questions about your Middleware data.
