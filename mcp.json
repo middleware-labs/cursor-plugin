@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "middleware": {
+      "type": "http",
+      "url": "https://mcp.middleware.io/mcp"
+    }
+  }
+}

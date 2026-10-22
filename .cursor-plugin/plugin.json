@@ -1,0 +1,22 @@
+{
+  "name": "middleware",
+  "displayName": "Middleware",
+  "version": "0.1.0",
+  "description": "Use Middleware directly in Cursor through the hosted Middleware MCP server. Query metrics, logs, traces, errors, RUM sessions, synthetic checks, and dashboards through natural conversation.",
+  "author": {
+    "name": "Middleware"
+  },
+  "homepage": "https://docs.middleware.io/opsai/mcp-server/overview",
+  "repository": "https://github.com/middleware-labs/cursor-plugin.git",
+  "license": "MIT",
+  "keywords": [
+    "middleware",
+    "observability",
+    "apm",
+    "monitoring",
+    "mcp",
+    "rum",
+    "synthetics"
+  ],
+  "logo": "assets/logo.svg"
+}
